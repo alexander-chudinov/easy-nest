@@ -1,3 +1,4 @@
+
 # scan in directory for all .dxf files
 # open each file
 # remove Solidworks logo
@@ -43,7 +44,9 @@ def removeAttribution(msp, entities):
 # MODIFIES INPUT DXF doc model space
 def setLayerColor(entities, color):
     for entity in entities:
-        entity.dxf.color = color
+        # check if entity is not mtext
+        if(entity.dxftype() != 'MTEXT'):
+            entity.dxf.color = color
 
 # Processes a single DXF file
 def processFile(filename):
